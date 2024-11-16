@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+.container {
+    width: 336px;
+    background-color: white;
+    border: 1px solid #C4C4C4;
+    color: white;
+    display: flex;  /* display: flex olaraq dəyişdirdik */
+    justify-content: center; /* Yatay mərkəzləşdirmə */
+    align-items: center; /* Şaquli mərkəzləşdirmə */
+    text-align: center;
+    border-radius: 10px;
+    position: relative;
+    overflow: visible;
+    flex-direction: column; /* Elementlərin şaquli düzülməsi üçün */
+}
+body, html {
+    margin: 0; /* Kənar boşluqları sıfırlayırıq */
+    height: 100%; /* Səhifənin hündürlüyünü 100% edirik */
+    display: flex; /* Flexbox istifadə edirik */
+    justify-content: center; /* Bütün məzmunu sağa yerləşdiririk */
+    align-items: center; /* Şaquli mərkəzləşdirmə */
+}
+
+.header {
+    background: #FFDC40;
+    width: 100%; /* Containerin eninə uyğunlaşdırılır */
+    height: 27px;
+    position: absolute;
+    top: 0; /* Yuxarıda yerləşdirilir */
+    left: 0; /* Solda yerləşdirilir */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.header-text{
+    font-family: Roboto;
+    font-size: 26px;
+    font-weight: 900;
+    text-align: center;
+    color: black;
+    margin: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Mətni yuxarı hizalayır */
+    margin-top: 40px;
+    margin-bottom: 20px;
+    position: relative;
+    top: 0;
+}
+.selection{
+    margin-top: 0px;
+    position: relative;
+}
+button {
+    background-color: transparent; /* Düymənin fonunu şəffaf edirik */
+    border: none; /* Sərhədi silirik */
+    display: flex; /* Düyməni flex konteyneri kimi göstəririk */
+    padding: 0; /* İç boşluğu sıfırlayırıq ki, şəkil tam düymənin içində olsun */
+    cursor: pointer; /* Siçan işarəsini pointer edirik */
+    justify-content: flex-end; /* Düymənin içindəki şəkili sağa yerləşdiririk */
+    align-items: center; /* Şəkili şaquli olaraq mərkəzləşdiririk */
+
+}
+/* Şəkil üçün stil */
+.button-container { 
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Button sağa hizalanır */
+    margin-top: 25px;
+
+
+}
+
+input{
+    position: relative;
+    padding:8px;
+}
+
+
+.input-container {
+    position: relative; /* input və x düyməsinin bir yerdə olması üçün */
+    width: 100%; /* Genişliyi təyin edir */
+    margin-top: 20px;
+}
+.input-text{
+    margin-top: -20px;
+}
+.input-container input {
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+    width: 250px;
+    padding-left: 6px;
+
+}
+.delete-button {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 40px;
+    margin-right: -130px;
+    width: 240px;
+}
+button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+li .task-item::marker{
+    width: 0px;
+}
+.add {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-top: 14px;
+    margin-bottom: 10px;
+    overflow: hidden; /* Məzmun çox olduqda scrollbar əlavə edir */
+    flex-wrap: wrap; /* Elementlərin sərhəddən çıxmaması üçün */
+}
+.add-button {
+    background: #833AE0;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1; /* Üstdə qalması üçün */
+    width: 150px;
+    height: 42px;
+    gap: 0px;
+    opacity: 0px;
+}
+  .todo-container {
+    word-break: break-word;
+    max-height: 420px;
+  }
+.plus-button {
+    background: #9953F1;
+    width: 40px; /* Plus düyməsinin eni */
+    height: 40px; /* Plus düyməsinin hündürlüyü */
+    border-radius: 50%; /* Tam yuvarlaq düymə */
+    border: none ;/* Ağ sərhəd */
+    position: absolute;
+    left: 50px; /* Add düyməsinin sağ tərəfində yerləşdirmək üçün */
+    top: 50.4%;
+    transform: translateY(-50%); /* Mərkəzləşdirir */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: white;
+    z-index: 2; /* Üst səviyyədə görünməsi üçün */
+    width: 42px;
+    height: 42px;
+    gap: 0px;
+    opacity: 0px;
+    font-family: Roboto;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 16.41px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    
+}
+.number {
+    display: inline-block; /* Ya da başqa uyğun display */
+    font-weight: bold; /* Və ya istədiyiniz başqa stil */
+}
+.todo-container {
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 264px;
+    overflow-y: auto; /* Daxilində məlumat çox olarsa sürüşdürmə əlavə olunur */
+    position: relative;
+    /* Maksimum hündürlük təyin edirik */
+    display: none;
+    transition: height 0.3s ease;
+} 
+li {
+    color: black;              /* Set text color */
+    margin-top: 0;             /* Remove top margin for tighter alignment */
+    padding-bottom: 3px;       /* Add padding below list items for separation */
+}
+
+/* Style for task-item divs */
+.task-item {
+    background: none;          /* Remove background */
+    font-size: 1.2em;          /* Set font size for readability */
+    cursor: pointer;          /* Pointer cursor to indicate clickability */
+    word-break: break-word;    /* Break long words to prevent overflow */
+    width: 180px;              /* Fixed width for task-item */
+    position: relative;        /* Enable relative positioning */
+    margin: 5px 0;    
+
+}
+/* Style for span inside task-item */
+span {
+    margin-right: 0;           /* Remove right margin to avoid unnecessary spacing */
+    margin-bottom: 5px;        /* Small margin at the bottom for spacing */
+    display: inline-block;     /* Make span act like a block but inline */
+    text-align: left;          /* Left-align the text */
+    width: 170px;              /* Fixed width to prevent overflow */
+    padding: 5px;              /* Add padding for better spacing inside span */
+    box-sizing: border-box;    /* Ensure padding is included in the width */
+}
+
+img{
+    margin-top: -20px;
+}
+.clear-icon{
+    margin-top: -10px;
+    margin-right: -235px;
+    margin-bottom: 20px;
+}
+.x-button {
+    position: absolute; /* 🔴 Düyməni input içərisinə yerləşdirmək üçün */
+    right: 220px; /* Sağ tərəfdən boşluq */
+    top: 49%; /* Ortaya yerləşdirmək üçün */
+    border: none; /* Sərhəd yoxdur */
+    font-size: 18px; /* İkonun ölçüsünü təyin edirik */
+}
+.left{
+    margin-right: -210px;
+}
+.task-content{
+    width: 0px;
+}
+/* Siyahı elementlərinin nömrəsini sol tərəfdə sabit saxlamaq */

@@ -30,7 +30,6 @@ function addTask() {
     const taskList = document.querySelector(".dataList");
 
     if (inputText) {
-        // Yeni tapşırıq yarat
         const newItem = document.createElement("li");
         newItem.classList.add("task-item");
 
@@ -57,7 +56,7 @@ function addTask() {
         deleteButton.appendChild(deleteIcon);
         deleteButton.addEventListener("click", () => {
             newItem.remove();
-            checkListVisibility(); // Siyahını yoxlayır
+            checkListVisibility(); 
         });
         taskContent.appendChild(deleteButton);
 
@@ -74,21 +73,19 @@ function addTask() {
         }
     }
 
-    checkListVisibility(); // Siyahını yoxlayır
+    checkListVisibility(); 
     
 }
 
 function checkListVisibility() {
     const taskList = document.querySelector(".dataList");
 
-    // "Heç nə yoxdur!" mesajını yoxla və əlavə et
     if (taskList.children.length === 0) {
         const noTaskMessage = document.createElement("li");
         noTaskMessage.textContent = "Heç nə yoxdur!";
         noTaskMessage.classList.add("no-task");
         taskList.appendChild(noTaskMessage);
     } else {
-        // Əgər elementlər varsa, "Heç nə yoxdur!" mesajını sil
         const noTaskMessage = document.querySelector(".no-task");
         if (noTaskMessage) noTaskMessage.remove();
     }

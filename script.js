@@ -1,164 +1,97 @@
-let list = document.querySelector('input');
-let clear = document.querySelector(".x-button");
+const todoInput = document.querySelector('.todo-input');
+const xButton = document.querySelector('.x-button'); 
+const pbutton = document.querySelector('.plus-button'); 
+const addButton = document.querySelector('.add-button');
+const todoList = document.querySelector('.todo-list');
+xButton.style.display = "block";
+const arrowIcon = document.querySelector(".arrow-icon"); 
 
-document.querySelector('.x-button').addEventListener('click',()=>{
-    list.value = "";
-})
-document.querySelector(".clear-icon").addEventListener("mouseover", ()=> {
-    document.querySelector(".clear-icon").src = "./Frame(2).svg";
+xButton.addEventListener('click', () => {
+    todoInput.value = '';
+});
+ 
+pbutton.addEventListener('click', () => {
+    todoInput.style.display = 'block';
+    todoInput.focus();
+    xButton.style.display = "block";
+    xButton.style.marginRight = "18px";
+
 });
 
-document.querySelector(".clear-icon").addEventListener("mouseout",() =>{
-    document.querySelector(".clear-icon").src = "./Frame(1).svg"; 
+addButton.addEventListener('click', () => {
+    const taskText = todoInput.value.trim();
+    if (taskText) {
+        addTask(taskText);
+        todoInput.value = '';
+        todoInput.style.display = "none";
+        xButton.style.display = "none";
+    }
 });
-document.querySelector(".clear-icon").addEventListener("mouseover", ()=> {
-    document.querySelector(".clear-icon").src = "./Frame(2).svg";
-});
-
 
 document.querySelector(".arrow-icon").addEventListener("mouseover", ()=> {
     document.querySelector(".arrow-icon").src = "./Frame(4).svg";
 });
-
 document.querySelector(".arrow-icon").addEventListener("mouseout",() =>{
     document.querySelector(".arrow-icon").src = "./Frame.svg"; 
 });
-function addTask() {
-    const inputField = document.querySelector(".input");
-    const inputText = inputField.value.trim();
-    const todoContainer = document.querySelector(".todo-container");
-    const taskList = document.querySelector(".dataList");
+ 
+function addTask(taskText) {
+    const li = document.createElement('li');
+    const taskNumber = todoList.children.length + 1;
 
-    if (inputText) {
-        const newItem = document.createElement("li");
-        newItem.classList.add("task-item");
+    const numberSpan = document.createElement('span');
+    numberSpan.textContent = `${taskNumber}.`;
 
-        const taskContent = document.createElement("div");
-        taskContent.classList.add("task-content");
+    const textSpan = document.createElement('span');
+    textSpan.textContent = taskText;
 
-        const taskText = document.createElement("span");
-        taskText.textContent = inputText;
-        taskContent.appendChild(taskText);
+    const taskDeleteButton = document.createElement('button');
+    taskDeleteButton.innerHTML = `<img src="./Frame(1).svg" class="delete-icon">`;  
+    taskDeleteButton.classList.add('delete-button');
 
-        const deleteButton = document.createElement("button");
-        deleteButton.classList.add("x-button");
-        const deleteIcon = document.createElement("img");
-        deleteIcon.src = "./Frame(1).svg";
-        deleteIcon.classList.add("clear-icon");
+    li.appendChild(numberSpan);
+    li.appendChild(textSpan);
+    li.appendChild(taskDeleteButton);
 
-        deleteIcon.addEventListener("mouseover", () => {
-            deleteIcon.src = "./Frame(2).svg";
-        });
-        deleteIcon.addEventListener("mouseout", () => {
-            deleteIcon.src = "./Frame(1).svg";
-        });
+    todoList.appendChild(li);
 
-        deleteButton.appendChild(deleteIcon);
-        deleteButton.addEventListener("click", () => {
-            newItem.remove();
-            checkListVisibility(); 
-        });
-        taskContent.appendChild(deleteButton);
-
-        newItem.appendChild(taskContent);
-        taskList.appendChild(newItem);
-
-        inputField.value = "";
-    } else {
-        if (taskList.innerHTML === "") {
-            const noTaskMessage = document.createElement("li");
-            noTaskMessage.textContent = "Heç nə yoxdur!";
-            noTaskMessage.classList.add("no-task");
-            taskList.appendChild(noTaskMessage);
-        }
-    }
-
-    checkListVisibility(); 
-    
-}
-
-function checkListVisibility() {
-    const taskList = document.querySelector(".dataList");
-
-    if (taskList.children.length === 0) {
-        const noTaskMessage = document.createElement("li");
-        noTaskMessage.textContent = "Heç nə yoxdur!";
-        noTaskMessage.classList.add("no-task");
-        taskList.appendChild(noTaskMessage);
-    } else {
-        const noTaskMessage = document.querySelector(".no-task");
-        if (noTaskMessage) noTaskMessage.remove();
-    }
-    
-}
-
-document.querySelector(".add-button").addEventListener("click",()=> {
-
-    const hoverPlus = document.querySelector(".plus-button");
-    const mainInput = document.querySelector(".input");
-    hoverPlus.addEventListener("click", () => {
-        mainInput.classList.remove("dis-none");
+    taskDeleteButton.addEventListener('click', () => {
+        li.remove();
+        updateTaskNumbers();
     });
 
-    const inputField = document.querySelector(".input");
-    const xButton = document.querySelector('.x-button');
-    const dataList = document.querySelector(".todo-container");
-    const headerText = document.querySelector('.header-text');
-    const arrowIcon = document.querySelector('.arrow-icon');
-    const deleteButton = document.querySelector('.delete-button');
-    inputField.style.display = "none"; 
-    xButton.style.display = "none"; 
-    dataList.style.display = "block"; 
-    dataList.style.marginTop = "10px";
-    xButton.style.marginTop = "-20px";
-    document.querySelector('.selection').style.marginTop = "-10px";
-    arrowIcon.style.marginTop = "0px";
-    arrowIcon.style.marginBottom = "5px";
-    deleteButton.style.marginTop = "0px";
-    headerText.style.marginTop = "54px";
-    
-});
+    updateTaskNumbers();  
+}
+ 
+let isAscending = true;   
+function updateTaskNumbers() {
+    const tasks = todoList.querySelectorAll('li');
+    tasks.forEach((task, index) => {
+        const numberSpan = task.querySelector('span:first-child'); 
+        numberSpan.textContent = `${index + 1}.`;
+    });
+}
 
-document.querySelector(".plus-button").addEventListener("click", function () {
-    document.querySelector(".input").style.display = "block";     
-    document.querySelector(".clear-icon").style.margin = "0px";
-    document.querySelector(".arrow-icon").style.marginTop = "25px";
-    document.querySelector(".delete-button").style.marginTop="-20px";
-    document.querySelector(".arrow-icon").style.marginBottom = "2px";
-    document.querySelector('.x-button').style.marginTop = "-10px";
-    document.querySelector(".x-button").style.display = "block";
-    document.querySelector(".x-button").style.marginRight = "-200px";
-    document.querySelector(".clear-icon").style.marginRight = "9px";
-});
+arrowIcon.addEventListener("click", () => {
+    const taskList = document.querySelector(".todo-list");
+    let tasks = Array.from(taskList.children); 
+ 
+    tasks.sort((a, b) => {
+        const aText = a.querySelector('span:nth-child(2)').textContent.toLowerCase();
+        const bText = b.querySelector('span:nth-child(2)').textContent.toLowerCase();
 
-document.querySelector(".x-button").addEventListener("click", function () {
-    document.querySelector(".input").value = ""; 
-});
-
-let isAscending = true; 
-
-
-document.querySelector(".arrow-icon").addEventListener("click", () => {
-    const taskList = document.querySelector(".dataList");
-    let tasks = Array.from(taskList.children);
-
-    
-    for (let i = 0; i < tasks.length; i++) {
-        for (let j = 0; j < tasks.length - i - 1; j++) {
-            if (
-                (isAscending && tasks[j].textContent > tasks[j + 1].textContent) || 
-                (!isAscending && tasks[j].textContent < tasks[j + 1].textContent)
-            ) {
-                let temp = tasks[j];
-                tasks[j] = tasks[j + 1];
-                tasks[j + 1] = temp;
-            }
+        if (isAscending) {
+            return aText < bText ? -1 : aText > bText ? 1 : 0;
+        } else {
+            return aText > bText ? -1 : aText < bText ? 1 : 0;
         }
-    }
-    taskList.innerHTML = ''; 
-    tasks.forEach(task => taskList.appendChild(task)); 
+    });
+  
+    taskList.innerHTML = '';
+    tasks.forEach(task => taskList.appendChild(task));
+    updateTaskNumbers();
     isAscending = !isAscending;
-    const arrowIcon = document.querySelector(".arrow-icon");
+
     arrowIcon.addEventListener("mouseover", () => {
         arrowIcon.src = isAscending ? "./Frame(5).svg" : "./Frame(4).svg";
     });

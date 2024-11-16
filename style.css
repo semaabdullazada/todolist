@@ -199,7 +199,6 @@ li {
     background: none;          /* Remove background */
     font-size: 1.2em;          /* Set font size for readability */
     cursor: pointer;          /* Pointer cursor to indicate clickability */
-    word-break: break-word;    /* Break long words to prevent overflow */
     width: 180px;              /* Fixed width for task-item */
     position: relative;        /* Enable relative positioning */
     margin: 5px 0;    
@@ -213,7 +212,8 @@ span {
     text-align: left;          /* Left-align the text */
     width: 170px;              /* Fixed width to prevent overflow */
     padding: 5px;              /* Add padding for better spacing inside span */
-    box-sizing: border-box;    /* Ensure padding is included in the width */
+    box-sizing: border-box;  
+    word-break: break-word;    /* Break long words to prevent overflow */
 }
 
 img{
@@ -238,3 +238,10 @@ img{
     width: 0px;
 }
 /* Siyahı elementlərinin nömrəsini sol tərəfdə sabit saxlamaq */
+.no-task {
+    list-style-type: none; /* Nömrələnməni ləğv et */
+    font-style: italic;    /* İstəyə uyğun dizayn əlavə edə bilərsiniz */
+    color: gray;
+text-align: center;
+margin-right: 30px;
+}

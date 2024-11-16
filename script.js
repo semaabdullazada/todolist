@@ -26,9 +26,11 @@ document.querySelector(".arrow-icon").addEventListener("mouseout",() =>{
 function addTask() {
     const inputField = document.querySelector(".input");
     const inputText = inputField.value.trim();
+    const todoContainer = document.querySelector(".todo-container");
+    const taskList = document.querySelector(".dataList");
 
     if (inputText) {
-        // Tapşırıq daxil edildikdə yeni element yarat
+        // Yeni tapşırıq yarat
         const newItem = document.createElement("li");
         newItem.classList.add("task-item");
 
@@ -55,28 +57,48 @@ function addTask() {
         deleteButton.appendChild(deleteIcon);
         deleteButton.addEventListener("click", () => {
             newItem.remove();
+            checkListVisibility(); // Siyahını yoxlayır
         });
         taskContent.appendChild(deleteButton);
 
         newItem.appendChild(taskContent);
-        document.querySelector(".dataList").appendChild(newItem);
+        taskList.appendChild(newItem);
 
-        inputField.value = ""; // Input sahəsini təmizləyirik
+        inputField.value = "";
     } else {
-        alert("Tapşırıq daxil etmək üçün + düyməsinə klikləyin!");
+        if (taskList.innerHTML === "") {
+            const noTaskMessage = document.createElement("li");
+            noTaskMessage.textContent = "Heç nə yoxdur!";
+            noTaskMessage.classList.add("no-task");
+            taskList.appendChild(noTaskMessage);
+        }
+    }
+
+    checkListVisibility(); // Siyahını yoxlayır
+}
+
+function checkListVisibility() {
+    const taskList = document.querySelector(".dataList");
+    const todoContainer = document.querySelector(".todo-container");
+
+    // Siyahıda element varsa "Heç nə yoxdur!" yazısını sil
+    const noTaskMessage = taskList.querySelector(".no-task");
+    if (noTaskMessage && taskList.children.length > 1) {
+        noTaskMessage.remove();
+    }
+
+    // Siyahını yoxla
+    if (taskList.innerHTML === "" || taskList.children.length === 0) {
+        todoContainer.style.display = "none"; // Siyahı boşdursa gizlət
+    } else {
+        todoContainer.style.display = "block"; // Siyahıda element varsa göstər
     }
 }
 
 
+
 document.querySelector(".add-button").addEventListener("click",()=> {
-    let listElement = document.querySelector('.todo-container')
-    let addButton = document.querySelector('.add');
-    function numbers () {
-        const numbers = document.querySelectorAll ('.number')
-        numbers.forEach((number,index) => {
-            number.textContent = (index + 1) + '.'
-        })
-    }
+
     const hoverPlus = document.querySelector(".plus-button");
     const mainInput = document.querySelector(".input");
     hoverPlus.addEventListener("click", () => {
@@ -105,8 +127,9 @@ document.querySelector(".add-button").addEventListener("click",()=> {
 document.querySelector(".plus-button").addEventListener("click", function () {
     document.querySelector(".input").style.display = "block";     
     document.querySelector(".clear-icon").style.margin = "0px";
-    document.querySelector(".arrow-icon").style.marginTop = "28px";
+    document.querySelector(".arrow-icon").style.marginTop = "25px";
     document.querySelector(".delete-button").style.marginTop="-20px";
+    document.querySelector(".arrow-icon").style.marginBottom = "2px";
     document.querySelector('.x-button').style.marginTop = "-10px";
     document.querySelector(".x-button").style.display = "block";
     document.querySelector(".x-button").style.marginRight = "-200px";

@@ -75,27 +75,25 @@ function addTask() {
     }
 
     checkListVisibility(); // Siyahını yoxlayır
+    
 }
 
 function checkListVisibility() {
     const taskList = document.querySelector(".dataList");
-    const todoContainer = document.querySelector(".todo-container");
 
-    // Siyahıda element varsa "Heç nə yoxdur!" yazısını sil
-    const noTaskMessage = taskList.querySelector(".no-task");
-    if (noTaskMessage && taskList.children.length > 1) {
-        noTaskMessage.remove();
-    }
-
-    // Siyahını yoxla
-    if (taskList.innerHTML === "" || taskList.children.length === 0) {
-        todoContainer.style.display = "none"; // Siyahı boşdursa gizlət
+    // "Heç nə yoxdur!" mesajını yoxla və əlavə et
+    if (taskList.children.length === 0) {
+        const noTaskMessage = document.createElement("li");
+        noTaskMessage.textContent = "Heç nə yoxdur!";
+        noTaskMessage.classList.add("no-task");
+        taskList.appendChild(noTaskMessage);
     } else {
-        todoContainer.style.display = "block"; // Siyahıda element varsa göstər
+        // Əgər elementlər varsa, "Heç nə yoxdur!" mesajını sil
+        const noTaskMessage = document.querySelector(".no-task");
+        if (noTaskMessage) noTaskMessage.remove();
     }
+    
 }
-
-
 
 document.querySelector(".add-button").addEventListener("click",()=> {
 

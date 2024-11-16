@@ -8,6 +8,8 @@ const arrowIcon = document.querySelector(".arrow-icon");
 
 xButton.addEventListener('click', () => {
     todoInput.value = '';
+    checkIfListEmpty();
+
 });
  
 pbutton.addEventListener('click', () => {
@@ -58,9 +60,13 @@ function addTask(taskText) {
     taskDeleteButton.addEventListener('click', () => {
         li.remove();
         updateTaskNumbers();
+    checkIfListEmpty();
+
     });
 
     updateTaskNumbers();  
+    checkIfListEmpty();
+
 }
  
 let isAscending = true;   
@@ -98,4 +104,16 @@ arrowIcon.addEventListener("click", () => {
     arrowIcon.addEventListener("mouseout", () => {
         arrowIcon.src = isAscending ? "./Frame(6).svg" : "./Frame.svg";
     });
+    checkIfListEmpty();
 });
+function checkIfListEmpty() {
+    if (todoList.children.length === 0) {
+        todoInput.value = "List yoxdur"; 
+       
+        todoInput.style.display = 'block'; 
+        xButton.style.display = 'block';
+    } else {
+        todoInput.value = ""; 
+    }
+    todoInput.value ="";
+}
